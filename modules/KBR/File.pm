@@ -30,6 +30,27 @@ sub open {
 }
 
 
+# 
+# 
+# 
+# Kim Brugger (16 Jan 2015)
+sub open_for_write {
+
+  my ($filename) = @_;
+
+  my $fh;
+
+  if ( $filename =~ /gz/) {
+    CORE::open ( $fh, " | gzip -c > $filename | ") || die "Could not open '$filename': $!\n";
+  }
+  else {
+    CORE::open ( $fh, " > $filename") || die "Could not open '$filename': $!\n";
+  }
+
+  return $fh;
+  
+}
+
 
 
 # 
